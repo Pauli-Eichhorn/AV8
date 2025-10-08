@@ -3,16 +3,292 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Meine Website</title>
+  <title>AV8 – Above Water UG | Offizielle Website</title>
+  <meta name="description" content="AV8 – Deutschlands erstes Kokosnusswasser mit funktionalen Zusätzen. Launching early 2026. Folge unseren Socials!">
   <style>
-    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e5e7eb; margin: 0; padding: 50px; text-align: center; }
-    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    p { color: #9ca3af; }
-    a { color: #38bdf8; text-decoration: none; }
+    :root{
+      --bg:#0f172a; --fg:#e5e7eb; --muted:#9ca3af; --brand:#38bdf8; --card:#111827; --ok:#22c55e; --warn:#f59e0b; --danger:#ef4444;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .container{max-width:1100px;margin:0 auto;padding:16px}
+    .nav{display:flex;align-items:center;justify-content:space-between}
+    .nav a{margin-left:16px}
+    .btn{display:inline-block;padding:10px 16px;border-radius:12px;background:var(--brand);color:#051018;font-weight:600}
+    .btn:hover{opacity:.9;text-decoration:none}
+    .hero{
+      min-height:78vh;display:grid;place-items:center;text-align:center;padding:64px 16px;position:relative;overflow:hidden
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;background:
+        linear-gradient(180deg,rgba(15,23,42,.1),rgba(15,23,42,.8)),
+        url('hero.jpg') center/cover no-repeat;
+      z-index:-1;
+    }
+    h1{font-size:clamp(2rem,5vw,3.2rem);margin:0 0 12px}
+    h2{font-size:clamp(1.4rem,3.5vw,2rem);margin:24px 0 8px}
+    p.lead{color:var(--muted);font-size:clamp(1rem,2.6vw,1.15rem);max-width:800px;margin:0 auto 18px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);padding:16px;border-radius:16px}
+    footer{border-top:1px solid rgba(255,255,255,.06);margin-top:48px}
+    .legal{max-width:900px;margin:0 auto;padding:32px 16px}
+    .legal h2{margin-top:24px}
+    .small{font-size:.95rem;color:var(--muted)}
+    .section{padding:40px 16px}
+    /* Cookie banner */
+    #cookie-banner{position:fixed;inset:auto 16px 16px 16px;z-index:60;max-width:900px;background:#0b1222;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;display:none}
+    #cookie-banner p{margin:0 0 12px}
+    #cookie-banner .row{display:flex;gap:8px;flex-wrap:wrap}
+    #cookie-banner button{border:0;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer}
+    .ghost{background:transparent;color:var(--fg);border:1px solid rgba(255,255,255,.16)}
+    .accept{background:var(--ok);color:#051018}
+    .decline{background:var(--danger)}
+    /* Hash-sections (simple router) */
+    .route{display:none}
+    .route.active{display:block}
+    .sr-only{position:absolute;left:-9999px}
+    /* Simple list style */
+    ul.clean{padding-left:1.1rem}
+    ul.clean li{margin:.25rem 0}
+    code{background:#0b1222;padding:.1rem .3rem;border-radius:.35rem;border:1px solid rgba(255,255,255,.06)}
   </style>
+
+  <!-- JSON-LD Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"AV8 – Above Water UG (haftungsbeschränkt)",
+    "legalName":"Above Water UG (haftungsbeschränkt)",
+    "brand":"AV8",
+    "url":"https://example.com",
+    "logo":"https://example.com/logo.png",
+    "sameAs":[
+      "https://www.instagram.com/av8_hydration",
+      "https://www.instagram.com/av8_unfiltered",
+      "https://www.tiktok.com/@av8"
+    ],
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"<Straße Hausnummer>",
+      "postalCode":"<PLZ>",
+      "addressLocality":"Köln",
+      "addressCountry":"DE"
+    },
+    "email":"hello@av8.com",
+    "telephone":"+49 <Nummer>"
+  }
+  </script>
 </head>
 <body>
-  <h1>Deine Website ist live 🚀</h1>
-  <p>Dies ist eine minimale statische Seite – lade sie auf <a href="https://app.netlify.com/drop">Netlify Drop</a> hoch.</p>
+  <a class="sr-only" href="#main">Zum Inhalt springen</a>
+  <header>
+    <div class="container nav">
+      <div><strong>AV8</strong></div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#datenschutz">Datenschutz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HOME -->
+    <section id="home" class="route active">
+      <div class="hero">
+        <div class="container">
+          <h1>DEUTSCHLANDS ERSTES KOKOSNUSSWASSER MIT FUNKTIONALEN ZUSÄTZEN.</h1>
+          <p class="lead">Natürlich. Erfrischend. Funktional. <br>Launching <strong>Early 2026</strong>.</p>
+          <p class="lead">Wir dokumentieren unsere Reise – folge unseren Socials👇</p>
+          <div class="cards" aria-label="Social Links">
+            <a class="card" href="https://www.instagram.com/av8_unfiltered" target="_blank" rel="noopener">Instagram: @av8_unfiltered</a>
+            <a class="card" href="https://www.instagram.com/av8_hydration" target="_blank" rel="noopener">Instagram: @av8_hydration</a>
+            <a class="card" href="https://www.tiktok.com/@av8" target="_blank" rel="noopener">TikTok: @av8</a>
+            <a class="card" href="mailto:hello@av8.com">Kontakt: hello@av8.com</a>
+          </div>
+          <p class="small" style="margin-top:8px">Kein Verkauf – Pre-Launch Informationsseite.</p>
+        </div>
+      </div>
+
+      <div class="section container">
+        <h2>Warum AV8?</h2>
+        <p class="lead">Kokosnusswasser + funktionale Zusätze = tägliche Hydration mit Mehrwert.</p>
+        <div class="cards">
+          <div class="card"><strong>Elektrolyte</strong><br><span class="small">Von Natur aus enthalten.</span></div>
+          <div class="card"><strong>Funktion</strong><br><span class="small">Optionale Koffein/Matcha-Variante.</span></div>
+          <div class="card"><strong>Clean Label</strong><br><span class="small">Ohne “komische Zusätze”.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPRESSUM -->
+    <section id="impressum" class="route">
+      <div class="legal">
+        <h1>Impressum</h1>
+        <p class="small">Angaben gemäß § 5 TMG, ggf. § 18 Abs. 2 MStV</p>
+
+        <h2>Betreiber</h2>
+        <p><strong>Above Water UG (haftungsbeschränkt)</strong><br>
+           handelnd unter der Marke „AV8“<br>
+           <span>Adresse:</span> <em>&lt;Straße Hausnummer&gt;</em>, <em>&lt;PLZ&gt;</em> Köln, Deutschland<br>
+           <span>Vertretungsberechtigt:</span> <em>&lt;Geschäftsführer: Vorname Nachname&gt;</em><br>
+           <span>E-Mail:</span> <a href="mailto:hello@av8.com">hello@av8.com</a><br>
+           <span>Telefon:</span> <em>&lt;+49 …&gt;</em>
+        </p>
+
+        <h2>Register</h2>
+        <p>Handelsregister: Amtsgericht Köln<br>
+           Registernummer: <em>&lt;HRB-Nummer&gt;</em><br>
+           USt-IdNr.: <em>&lt;DE…&gt;</em> (sofern vorhanden)
+        </p>
+
+        <h2>Inhaltlich Verantwortlicher</h2>
+        <p>gemäß § 18 Abs. 2 MStV (nur bei journalistisch-redaktionellen Inhalten erforderlich):<br>
+           <em>&lt;Name, Anschrift wie oben&gt;</em>
+        </p>
+
+        <h2>Verbraucherstreitbeilegung</h2>
+        <p>Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen (§ 36 VSBG).</p>
+
+        <h2>Haftung für Inhalte & Links</h2>
+        <p>Für eigene Inhalte nach § 7 Abs. 1 TMG sind wir verantwortlich. Nach §§ 8–10 TMG sind wir nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Bei Bekanntwerden von Rechtsverletzungen entfernen wir solche Inhalte/Links umgehend.</p>
+
+        <h2>Urheberrecht</h2>
+        <p>Inhalte und Werke auf dieser Website unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung.</p>
+      </div>
+    </section>
+
+    <!-- DATENSCHUTZ -->
+    <section id="datenschutz" class="route">
+      <div class="legal">
+        <h1>Datenschutzerklärung</h1>
+        <p class="small">Informationen gemäß Art. 12 ff. DSGVO</p>
+
+        <h2>1. Verantwortlicher</h2>
+        <p><strong>Above Water UG (haftungsbeschränkt)</strong>, <em>&lt;Anschrift wie im Impressum&gt;</em><br>
+           E-Mail: <a href="mailto:privacy@av8.com">privacy@av8.com</a>
+        </p>
+
+        <h2>2. Hosting und Server-Logs</h2>
+        <p>Unser Hoster <em>&lt;Name des Hosters, z. B. IONOS SE&gt;</em> verarbeitet in unserem Auftrag (Art. 28 DSGVO) Server-Logfiles: IP-Adresse, Datum/Uhrzeit, User-Agent, angeforderte URL, Referrer, Statuscode. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der sicheren Bereitstellung). Log-Daten werden gemäß Hoster-Standard nach kurzer Zeit gelöscht.</p>
+
+        <h2>3. Kontaktaufnahme</h2>
+        <p>Bei Kontakt per E-Mail verarbeiten wir Ihre Angaben zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b oder f DSGVO). Daten löschen wir, sobald die Anfrage erledigt ist und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.</p>
+
+        <h2>4. Cookies & Einwilligungen</h2>
+        <p>Diese Seite setzt nur technisch notwendige Cookies ein. Optionale Analyse/Marketing-Cookies werden nur nach Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) gesetzt. Sie können Ihre Auswahl jederzeit im Cookie-Banner anpassen.</p>
+
+        <h2>5. Optionale Dienste (platzhalter)</h2>
+        <p><strong>Web-Analyse (z. B. Matomo/Google Analytics):</strong> Wird nur nach Einwilligung geladen. IP-Anonymisierung aktiv. Speicherdauer: <em>&lt;z. B. 14 Monate&gt;</em>. Widerruf jederzeit über Cookie-Banner.<br>
+           <strong>Social Media Links:</strong> Es handelt sich um reine Links. Beim Besuch unserer Seite findet keine Datenübertragung an die Plattformen statt.
+        </p>
+
+        <h2>6. Auftragsverarbeitung</h2>
+        <p>Mit unseren Dienstleistern bestehen Auftragsverarbeitungsverträge nach Art. 28 DSGVO.</p>
+
+        <h2>7. Speicherdauer</h2>
+        <p>Wir verarbeiten personenbezogene Daten nur so lange, wie es für die jeweiligen Zwecke erforderlich ist bzw. gesetzliche Pflichten bestehen.</p>
+
+        <h2>8. Ihre Rechte</h2>
+        <ul class="clean">
+          <li>Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18)</li>
+          <li>Datenübertragbarkeit (Art. 20)</li>
+          <li>Widerspruch (Art. 21) gegen Verarbeitungen auf Grundlage von Art. 6 Abs. 1 lit. e/f</li>
+          <li>Widerruf erteilter Einwilligungen (Art. 7 Abs. 3) mit Wirkung für die Zukunft</li>
+          <li>Beschwerde bei einer Aufsichtsbehörde (Art. 77), z. B. LDI NRW</li>
+        </ul>
+
+        <h2>9. Internationale Datenübermittlungen</h2>
+        <p>Erfolgen nur, wenn ein Angemessenheitsbeschluss (Art. 45) vorliegt oder geeignete Garantien (Art. 46) vereinbart sind.</p>
+
+        <h2>10. Aktualität</h2>
+        <p>Diese Datenschutzerklärung ist aktuell und wird bei Änderungen der Datenverarbeitung angepasst.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="small">© <span id="y"></span> AV8 – Above Water UG (haftungsbeschränkt)</p>
+      <p class="small"><a href="#impressum">Impressum</a> · <a href="#datenschutz">Datenschutz</a></p>
+    </div>
+  </footer>
+
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Einstellungen">
+    <p>Wir verwenden nur technisch notwendige Cookies. Optionale Analyse/Marketing-Cookies werden erst nach deiner Einwilligung gesetzt.</p>
+    <div class="row">
+      <button class="decline" id="cookie-decline">Nur notwendige</button>
+      <button class="ghost" id="cookie-settings">Einstellungen</button>
+      <button class="accept" id="cookie-accept">Alle akzeptieren</button>
+    </div>
+    <div id="cookie-panel" class="small" style="display:none;margin-top:10px">
+      <label><input type="checkbox" id="consent-analytics"> Analyse (z. B. Matomo/GA)</label><br>
+      <label><input type="checkbox" id="consent-marketing"> Marketing</label><br>
+      <button class="btn" id="cookie-save" style="margin-top:8px">Auswahl speichern</button>
+    </div>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Simple hash router
+    const routes = document.querySelectorAll('.route');
+    function renderRoute(){
+      const hash = location.hash || '#home';
+      routes.forEach(r => r.classList.remove('active'));
+      const target = document.querySelector(hash);
+      if(target){ target.classList.add('active'); }
+      // focus heading for a11y
+      const h = target?.querySelector('h1');
+      if(h){ h.tabIndex = -1; h.focus(); }
+    }
+    window.addEventListener('hashchange', renderRoute);
+    renderRoute();
+
+    // Cookie consent
+    const banner = document.getElementById('cookie-banner');
+    const panel  = document.getElementById('cookie-panel');
+    const KEY = 'av8_cookie_consent_v1';
+
+    function getConsent(){
+      try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; }
+    }
+    function saveConsent(val){
+      localStorage.setItem(KEY, JSON.stringify(val));
+      applyConsent(val);
+    }
+    function applyConsent(c){
+      // Example: conditionally load analytics
+      if(c.analytics){
+        // load your analytics here (only after consent)
+        // Example placeholder:
+        // const s=document.createElement('script');
+        // s.src='https://example.com/analytics.js'; document.head.appendChild(s);
+      }
+    }
+    function showBannerIfNeeded(){
+      const c = getConsent();
+      if(!('necessary' in c)){ banner.style.display='block'; }
+      else { applyConsent(c); }
+    }
+    showBannerIfNeeded();
+
+    document.getElementById('cookie-settings').onclick = ()=>{ panel.style.display = panel.style.display==='none' ? 'block' : 'none'; };
+    document.getElementById('cookie-decline').onclick  = ()=>{ saveConsent({necessary:true, analytics:false, marketing:false}); banner.style.display='none'; };
+    document.getElementById('cookie-accept').onclick   = ()=>{ saveConsent({necessary:true, analytics:true, marketing:true}); banner.style.display='none'; };
+    document.getElementById('cookie-save').onclick     = ()=>{
+      const analytics = document.getElementById('consent-analytics').checked;
+      const marketing = document.getElementById('consent-marketing').checked;
+      saveConsent({necessary:true, analytics, marketing});
+      banner.style.display='none';
+    };
+  </script>
 </body>
 </html>
